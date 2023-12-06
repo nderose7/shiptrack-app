@@ -1,0 +1,582 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01B933912B20D6C400399A20 /* shiptrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B933902B20D6C400399A20 /* shiptrackApp.swift */; };
+		01B933932B20D6C400399A20 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B933922B20D6C400399A20 /* ContentView.swift */; };
+		01B933952B20D6C600399A20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B933942B20D6C600399A20 /* Assets.xcassets */; };
+		01B933982B20D6C600399A20 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01B933972B20D6C600399A20 /* Preview Assets.xcassets */; };
+		01B933A22B20D6C600399A20 /* shiptrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B933A12B20D6C600399A20 /* shiptrackTests.swift */; };
+		01B933AC2B20D6C600399A20 /* shiptrackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B933AB2B20D6C600399A20 /* shiptrackUITests.swift */; };
+		01B933AE2B20D6C600399A20 /* shiptrackUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B933AD2B20D6C600399A20 /* shiptrackUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		01B9339E2B20D6C600399A20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01B933852B20D6C400399A20 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01B9338C2B20D6C400399A20;
+			remoteInfo = shiptrack;
+		};
+		01B933A82B20D6C600399A20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01B933852B20D6C400399A20 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01B9338C2B20D6C400399A20;
+			remoteInfo = shiptrack;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01B9338D2B20D6C400399A20 /* shiptrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shiptrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01B933902B20D6C400399A20 /* shiptrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shiptrackApp.swift; sourceTree = "<group>"; };
+		01B933922B20D6C400399A20 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		01B933942B20D6C600399A20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		01B933972B20D6C600399A20 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		01B9339D2B20D6C600399A20 /* shiptrackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shiptrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01B933A12B20D6C600399A20 /* shiptrackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shiptrackTests.swift; sourceTree = "<group>"; };
+		01B933A72B20D6C600399A20 /* shiptrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shiptrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01B933AB2B20D6C600399A20 /* shiptrackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shiptrackUITests.swift; sourceTree = "<group>"; };
+		01B933AD2B20D6C600399A20 /* shiptrackUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shiptrackUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		01B9338A2B20D6C400399A20 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01B9339A2B20D6C600399A20 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01B933A42B20D6C600399A20 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01B933842B20D6C400399A20 = {
+			isa = PBXGroup;
+			children = (
+				01B9338F2B20D6C400399A20 /* shiptrack */,
+				01B933A02B20D6C600399A20 /* shiptrackTests */,
+				01B933AA2B20D6C600399A20 /* shiptrackUITests */,
+				01B9338E2B20D6C400399A20 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		01B9338E2B20D6C400399A20 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				01B9338D2B20D6C400399A20 /* shiptrack.app */,
+				01B9339D2B20D6C600399A20 /* shiptrackTests.xctest */,
+				01B933A72B20D6C600399A20 /* shiptrackUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		01B9338F2B20D6C400399A20 /* shiptrack */ = {
+			isa = PBXGroup;
+			children = (
+				01B933902B20D6C400399A20 /* shiptrackApp.swift */,
+				01B933922B20D6C400399A20 /* ContentView.swift */,
+				01B933942B20D6C600399A20 /* Assets.xcassets */,
+				01B933962B20D6C600399A20 /* Preview Content */,
+			);
+			path = shiptrack;
+			sourceTree = "<group>";
+		};
+		01B933962B20D6C600399A20 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				01B933972B20D6C600399A20 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		01B933A02B20D6C600399A20 /* shiptrackTests */ = {
+			isa = PBXGroup;
+			children = (
+				01B933A12B20D6C600399A20 /* shiptrackTests.swift */,
+			);
+			path = shiptrackTests;
+			sourceTree = "<group>";
+		};
+		01B933AA2B20D6C600399A20 /* shiptrackUITests */ = {
+			isa = PBXGroup;
+			children = (
+				01B933AB2B20D6C600399A20 /* shiptrackUITests.swift */,
+				01B933AD2B20D6C600399A20 /* shiptrackUITestsLaunchTests.swift */,
+			);
+			path = shiptrackUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		01B9338C2B20D6C400399A20 /* shiptrack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01B933B12B20D6C600399A20 /* Build configuration list for PBXNativeTarget "shiptrack" */;
+			buildPhases = (
+				01B933892B20D6C400399A20 /* Sources */,
+				01B9338A2B20D6C400399A20 /* Frameworks */,
+				01B9338B2B20D6C400399A20 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = shiptrack;
+			productName = shiptrack;
+			productReference = 01B9338D2B20D6C400399A20 /* shiptrack.app */;
+			productType = "com.apple.product-type.application";
+		};
+		01B9339C2B20D6C600399A20 /* shiptrackTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01B933B42B20D6C600399A20 /* Build configuration list for PBXNativeTarget "shiptrackTests" */;
+			buildPhases = (
+				01B933992B20D6C600399A20 /* Sources */,
+				01B9339A2B20D6C600399A20 /* Frameworks */,
+				01B9339B2B20D6C600399A20 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01B9339F2B20D6C600399A20 /* PBXTargetDependency */,
+			);
+			name = shiptrackTests;
+			productName = shiptrackTests;
+			productReference = 01B9339D2B20D6C600399A20 /* shiptrackTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		01B933A62B20D6C600399A20 /* shiptrackUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01B933B72B20D6C600399A20 /* Build configuration list for PBXNativeTarget "shiptrackUITests" */;
+			buildPhases = (
+				01B933A32B20D6C600399A20 /* Sources */,
+				01B933A42B20D6C600399A20 /* Frameworks */,
+				01B933A52B20D6C600399A20 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01B933A92B20D6C600399A20 /* PBXTargetDependency */,
+			);
+			name = shiptrackUITests;
+			productName = shiptrackUITests;
+			productReference = 01B933A72B20D6C600399A20 /* shiptrackUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		01B933852B20D6C400399A20 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					01B9338C2B20D6C400399A20 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					01B9339C2B20D6C600399A20 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 01B9338C2B20D6C400399A20;
+					};
+					01B933A62B20D6C600399A20 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 01B9338C2B20D6C400399A20;
+					};
+				};
+			};
+			buildConfigurationList = 01B933882B20D6C400399A20 /* Build configuration list for PBXProject "shiptrack" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 01B933842B20D6C400399A20;
+			productRefGroup = 01B9338E2B20D6C400399A20 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				01B9338C2B20D6C400399A20 /* shiptrack */,
+				01B9339C2B20D6C600399A20 /* shiptrackTests */,
+				01B933A62B20D6C600399A20 /* shiptrackUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		01B9338B2B20D6C400399A20 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01B933982B20D6C600399A20 /* Preview Assets.xcassets in Resources */,
+				01B933952B20D6C600399A20 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01B9339B2B20D6C600399A20 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01B933A52B20D6C600399A20 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		01B933892B20D6C400399A20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01B933932B20D6C400399A20 /* ContentView.swift in Sources */,
+				01B933912B20D6C400399A20 /* shiptrackApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01B933992B20D6C600399A20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01B933A22B20D6C600399A20 /* shiptrackTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01B933A32B20D6C600399A20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01B933AE2B20D6C600399A20 /* shiptrackUITestsLaunchTests.swift in Sources */,
+				01B933AC2B20D6C600399A20 /* shiptrackUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		01B9339F2B20D6C600399A20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01B9338C2B20D6C400399A20 /* shiptrack */;
+			targetProxy = 01B9339E2B20D6C600399A20 /* PBXContainerItemProxy */;
+		};
+		01B933A92B20D6C600399A20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01B9338C2B20D6C400399A20 /* shiptrack */;
+			targetProxy = 01B933A82B20D6C600399A20 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		01B933AF2B20D6C600399A20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		01B933B02B20D6C600399A20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		01B933B22B20D6C600399A20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"shiptrack/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eatclassy.shiptrack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		01B933B32B20D6C600399A20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"shiptrack/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eatclassy.shiptrack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		01B933B52B20D6C600399A20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eatclassy.shiptrackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shiptrack.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/shiptrack";
+			};
+			name = Debug;
+		};
+		01B933B62B20D6C600399A20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eatclassy.shiptrackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shiptrack.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/shiptrack";
+			};
+			name = Release;
+		};
+		01B933B82B20D6C600399A20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eatclassy.shiptrackUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = shiptrack;
+			};
+			name = Debug;
+		};
+		01B933B92B20D6C600399A20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eatclassy.shiptrackUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = shiptrack;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		01B933882B20D6C400399A20 /* Build configuration list for PBXProject "shiptrack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01B933AF2B20D6C600399A20 /* Debug */,
+				01B933B02B20D6C600399A20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01B933B12B20D6C600399A20 /* Build configuration list for PBXNativeTarget "shiptrack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01B933B22B20D6C600399A20 /* Debug */,
+				01B933B32B20D6C600399A20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01B933B42B20D6C600399A20 /* Build configuration list for PBXNativeTarget "shiptrackTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01B933B52B20D6C600399A20 /* Debug */,
+				01B933B62B20D6C600399A20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01B933B72B20D6C600399A20 /* Build configuration list for PBXNativeTarget "shiptrackUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01B933B82B20D6C600399A20 /* Debug */,
+				01B933B92B20D6C600399A20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 01B933852B20D6C400399A20 /* Project object */;
+}
