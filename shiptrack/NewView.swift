@@ -13,11 +13,14 @@ import Vision
 typealias SerialNumberScanHandler = (String, UIImage) -> Void
 
 struct CameraView: UIViewControllerRepresentable {
+    @Binding var cameraViewController: CameraViewController?
+
     var onSerialNumberScanned: SerialNumberScanHandler
 
     func makeUIViewController(context: Context) -> CameraViewController {
         let viewController = CameraViewController()
         viewController.onSerialNumberScanned = onSerialNumberScanned
+        self.cameraViewController = viewController
         return viewController
     }
 
@@ -176,17 +179,21 @@ struct NewShipmentsView: View {
     @State private var foundProduct: Product?
     @State private var isFetchingProduct = false
     @StateObject private var shippingData = ShippingData()
+    @State private var cameraViewController: CameraViewController?
 
     var body: some View {
         NavigationStack {
             PageContainer(alignment: .center, title: "New Shipment", subtitle: "Scan a serial number to create shipping label.", content:  {
-                CameraView { serialNumber, image in
+                CameraView(cameraViewController: $cameraViewController) { serialNumber, image in
                     self.scannedSerialNumber = serialNumber
                     self.scannedImage = image
                     self.isFetchingProduct = true
                     ProductService().fetchProduct(bySerialNumber: serialNumber) { product in
                         self.foundProduct = product
                         self.isFetchingProduct = false
+                        if product != nil {
+                            self.cameraViewController?.stopCamera() // Stop the camera here
+                        }
                     }
                 }
                 
