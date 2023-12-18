@@ -55,7 +55,7 @@ class KeychainService {
 
 class StrapiAuthService {
     func login(email: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
-        let url = URL(string: "http://localhost:1337/api/auth/local")! // Replace with your Strapi URL
+        let url = URL(string: "https://cloudship-strapi-6orma.ondigitalocean.app/api/auth/local")! // Replace with your Strapi URL
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -108,7 +108,7 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
 
-    let logoURL = URL(string: "http://localhost:3000/logo.png") // Replace with actual IP if testing on a real device
+    let logoURL = URL(string: "https://cloudship-xi.vercel.app/logo.png") // Replace with actual IP if testing on a real device
 
     var body: some View {
         VStack {

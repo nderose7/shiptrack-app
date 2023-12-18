@@ -17,7 +17,7 @@ class NetworkManager {
             return
         }
         
-        let url = URL(string: "http://localhost:1337/api/shipments")! // Replace with your API URL
+        let url = URL(string: "https://cloudship-strapi-6orma.ondigitalocean.app/api/shipments")! // Replace with your API URL
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -70,7 +70,7 @@ class NetworkManager {
             return
         }
         
-        let url = URL(string: "http://localhost:1337/api/shipments/\(shipmentId)/buy-label")!
+        let url = URL(string: "https://cloudship-strapi-6orma.ondigitalocean.app/api/shipments/\(shipmentId)/buy-label")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

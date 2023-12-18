@@ -42,7 +42,7 @@ class ProductService {
             return
         }
 
-        let url = URL(string: "http://localhost:1337/api/products")!
+        let url = URL(string: "https://cloudship-strapi-6orma.ondigitalocean.app/api/products")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("Bearer \(authData.token)", forHTTPHeaderField: "Authorization")
