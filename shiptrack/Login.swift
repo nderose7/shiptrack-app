@@ -6,8 +6,6 @@
 //
 
 import Foundation
-//import FirebaseAuth
-
 import SwiftUI
 import Security
 
@@ -110,24 +108,57 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
 
+    let logoURL = URL(string: "http://localhost:3000/logo.png") // Replace with actual IP if testing on a real device
+
     var body: some View {
         VStack {
-            TextField("Email", text: $email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .autocapitalization(.none)
-                .padding()
-
-            SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            Button("Login") {
-                // Handle login action
-                loginUser()
+            if let url = logoURL {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 193, height: 52) // Adjust size as needed
+                } placeholder: {
+                    ProgressView()
+                }
+                .padding(.bottom, 20)
             }
-            .padding()
+            
+            VStack(alignment: .leading) {
+                
+                Text("Email")
+                    .padding([.leading, .top], 10) // Add padding to align with TextField
+                
+                TextField("Email", text: $email)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
+                    .padding([.horizontal, .bottom], 10)
+                
+                Text("Password")
+                    .padding([.leading, .top], 10) // Add padding to align with TextField
+                
+                SecureField("Password", text: $password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding([.horizontal, .bottom], 10)
+                
+                
+                Button("Login") {
+                    // Handle login action
+                    loginUser()
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding()
+                .background(Color.hex("0177CC"))
+                .foregroundColor(.white)
+                .font(.custom("Avenir", size: 20))
+                .fontWeight(.bold)
+                .cornerRadius(10) // Change this value for different corner radius sizes
+                .padding(15)
+                .padding(.top, 15)
+                
+            }
         }
-        .padding()
+        .padding(.horizontal)
     }
     /*
     private func loginUser() {
