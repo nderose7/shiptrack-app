@@ -17,7 +17,23 @@ class NetworkManager {
             return
         }
         
-        let url = URL(string: "https://cloudship-strapi-6orma.ondigitalocean.app/api/shipments")! // Replace with your API URL
+        let endpoint = "/api/create-shipment"
+                
+        // Determine the base URL based on the build configuration.
+        let baseUrlString: String
+        #if DEBUG
+        baseUrlString = (Bundle.main.object(forInfoDictionaryKey: "LocalBaseURL") as? String) ?? ""
+        #else
+        baseUrlString = (Bundle.main.object(forInfoDictionaryKey: "ProductionBaseURL") as? String) ?? ""
+        #endif
+
+        // Combine the base URL with the endpoint to form the complete URL.
+        guard let url = URL(string: baseUrlString + endpoint), !baseUrlString.isEmpty else {
+            // Handle the error appropriately
+            // e.g., log an error, show an alert, etc.
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -70,7 +86,23 @@ class NetworkManager {
             return
         }
         
-        let url = URL(string: "https://cloudship-strapi-6orma.ondigitalocean.app/api/shipments/\(shipmentId)/buy-label")!
+        let endpoint = "api/create-shipment/\(shipmentId)/buy-label"
+                
+        // Determine the base URL based on the build configuration.
+        let baseUrlString: String
+        #if DEBUG
+        baseUrlString = (Bundle.main.object(forInfoDictionaryKey: "LocalBaseURL") as? String) ?? ""
+        #else
+        baseUrlString = (Bundle.main.object(forInfoDictionaryKey: "ProductionBaseURL") as? String) ?? ""
+        #endif
+
+        // Combine the base URL with the endpoint to form the complete URL.
+        guard let url = URL(string: baseUrlString + endpoint), !baseUrlString.isEmpty else {
+            // Handle the error appropriately
+            // e.g., log an error, show an alert, etc.
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

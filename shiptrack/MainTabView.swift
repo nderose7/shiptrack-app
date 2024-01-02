@@ -19,25 +19,37 @@ struct MainTabView: View {
             // Main content of the TabView
             
             TabView {
+                /*
                 HomeView()
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
+                 
+                WebView(urlString: "https://cloudship-xi.vercel.app/dashboard")
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
                 
+                WebView(urlString: "https://cloudship-xi.vercel.app/shipments")
+                    .tabItem {
+                        Label("Home", systemImage: "box")
+                    }
+                /*
                 NewShipmentsView()
                     .tabItem {
                         Label("New", systemImage: "paperplane.fill")
                     }
-
-                AllProductsView()
+                 */
+                WebView(urlString: "https://cloudship-xi.vercel.app/products")
                     .tabItem {
                         Label("Locate", systemImage: "mappin.and.ellipse")
                     }
 
+                
                 MenuView()
                     .tabItem {
                         Label("Menu", systemImage: "person.crop.circle")
-                    }
+                    }*/
             }
 
             // Grey border at the top of the tab bar

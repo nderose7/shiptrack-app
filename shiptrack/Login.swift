@@ -55,7 +55,28 @@ class KeychainService {
 
 class StrapiAuthService {
     func login(email: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
-        let url = URL(string: "https://cloudship-strapi-6orma.ondigitalocean.app/api/auth/local")! // Replace with your Strapi URL
+        
+        let endpoint = "/api/auth/local"
+        
+        print("Local Base URL:", Bundle.main.object(forInfoDictionaryKey: "LocalBaseURL") as? String ?? "nil")
+        print("Production Base URL:", Bundle.main.object(forInfoDictionaryKey: "ProductionBaseURL") as? String ?? "nil")
+
+                
+        // Determine the base URL based on the build configuration.
+        let baseUrlString: String
+        #if DEBUG
+        baseUrlString = (Bundle.main.object(forInfoDictionaryKey: "LocalBaseURL") as? String) ?? ""
+        #else
+        baseUrlString = (Bundle.main.object(forInfoDictionaryKey: "ProductionBaseURL") as? String) ?? ""
+        #endif
+
+        // Combine the base URL with the endpoint to form the complete URL.
+        guard let url = URL(string: baseUrlString + endpoint), !baseUrlString.isEmpty else {
+            // Handle the error appropriately
+            // e.g., log an error, show an alert, etc.
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -108,21 +129,11 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
 
-    let logoURL = URL(string: "https://cloudship-xi.vercel.app/logo.png") // Replace with actual IP if testing on a real device
+    //let logoURL = URL(string: "https://cloudship-xi.vercel.app/logo.png") // Replace with actual IP if testing on a real device
 
     var body: some View {
         VStack {
-            if let url = logoURL {
-                AsyncImage(url: url) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 193, height: 52) // Adjust size as needed
-                } placeholder: {
-                    ProgressView()
-                }
-                .padding(.bottom, 20)
-            }
+            Image("Logo").padding(.bottom, 20)
             
             VStack(alignment: .leading) {
                 

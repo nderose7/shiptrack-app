@@ -39,11 +39,11 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     override func viewDidLoad() {
         super.viewDidLoad()
-#if targetEnvironment(simulator)
+        #if targetEnvironment(simulator)
         performTextRecognitionWithTestImage()
-#else
+        #else
         setupCamera()
-#endif
+        #endif
     }
     
     
@@ -148,16 +148,17 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
 }
 
 extension ProductService {
-    func fetchProduct(bySerialNumber serialNumber: String, completion: @escaping (Product?) -> Void) {
+    func fetchProduct(bySerialNumber serialNumber: String, completion: @escaping (ProductData?) -> Void) {
         fetchProducts { productsData, error in
             guard let productsData = productsData, error == nil else {
                 completion(nil)
                 return
             }
 
+            // Find the product with the matching serial number directly in ProductData
             let foundProduct = productsData.first { data in
-                data.attributes.serial == serialNumber
-            }?.attributes
+                data.serial == serialNumber
+            }
 
             DispatchQueue.main.async {
                 completion(foundProduct)
@@ -167,34 +168,57 @@ extension ProductService {
 }
 
 
+
 enum NavigationTarget: Hashable {
     case shipView(String)
 }
 
+struct Product: Decodable {
+    var name: String
+    var description: String
+    var serial: String
+    var length: Int
+    var width: Int
+    var height: Int
+    var weight: Int
+}
 
-struct NewShipmentsView: View {
+
+struct NewShipmentsView: View, Hashable {
     @State private var scannedSerialNumber: String = ""
     @State private var scannedImage: UIImage?
     @State private var navigateToShipView = false
-    @State private var foundProduct: Product?
+    @State private var foundProduct: ProductData?
     @State private var isFetchingProduct = false
     @StateObject private var shippingData = ShippingData()
     @State private var cameraViewController: CameraViewController?
+    //@EnvironmentObject var navigationState: NavigationState
+    //@Binding var showNewView: Bool
+    //let onClose: () -> Void
+    //@Environment(\.presentationMode) var presentationMode
+    //@Binding var isPresented: Bool
+    @Binding var showScanner: Bool
+    
+    func hash(into hasher: inout Hasher) {
+        // You can use a constant or a unique property to hash
+        hasher.combine("NewShipmentsView")
+    }
 
     var body: some View {
         NavigationStack {
-            PageContainer(alignment: .center, title: "New Shipment", subtitle: "Scan a serial number to create shipping label.", content:  {
+            PageContainer(alignment: .center, title: "Scan Serial / Barcode", subtitle: "", content:  {
                 CameraView(cameraViewController: $cameraViewController) { serialNumber, image in
                     self.scannedSerialNumber = serialNumber
                     self.scannedImage = image
                     self.isFetchingProduct = true
-                    ProductService().fetchProduct(bySerialNumber: serialNumber) { product in
-                        self.foundProduct = product
+                    ProductService().fetchProduct(bySerialNumber: serialNumber) { productData in
+                        self.foundProduct = productData
                         self.isFetchingProduct = false
-                        if product != nil {
+                        if productData != nil {
                             self.cameraViewController?.stopCamera() // Stop the camera here
                         }
                     }
+
                 }
                 
                 if let image = scannedImage {
@@ -221,7 +245,7 @@ struct NewShipmentsView: View {
                         
                         if isFetchingProduct {
                             Text("Searching for product...")
-                        } else if let product = foundProduct {
+                        } else if let productData = foundProduct {
                             // Display product details
                             Text("Product Found:")
                                 .multilineTextAlignment(.center)
@@ -230,36 +254,52 @@ struct NewShipmentsView: View {
                             
                             Spacer().frame(height: 8)
                             
-                            Text(product.name)
+                            Text(productData.name)
                                 .multilineTextAlignment(.center)
                                 .font(.custom("Avenir", size: 18))
                             
-                            Button("Create Shipping Label") {
-                                navigateToShipView = true
+                            Button("Done") {
+                                // Close sheet
+                                print("Trying to close...")
+                                //onClose()
+                                //self.presentationMode.wrappedValue.dismiss()
+                                //navigationState.showNewView = false
+                                //showNewView = false
+                                //print("Trying to close...", navigationState.showNewView)
+                                //self.isPresented = false
+                                self.showScanner = false
                             }
-                            .padding()
+                            .padding(.leading, 40)
+                            .padding(.trailing, 40)
+                            .padding(.bottom, 20)
+                            .padding(.top, 20)
                             .background(Color.hex("0177CC"))
                             .foregroundColor(.white)
                             .font(.custom("Avenir", size: 20))
                             .fontWeight(.bold)
-                            .cornerRadius(10) // Change this value for different corner radius sizes
+                            .cornerRadius(100) // Change this value for different corner radius sizes
                             .padding()
                             
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .navigationDestination(isPresented: $navigateToShipView) {
-                        if let product = foundProduct {
-                            // Pass both 'product' and 'shippingData' to ShipView
-                            ShipView(product: product, shippingData: shippingData)
+                        if let productData = foundProduct {
+                            ShipView(product: productData, shippingData: shippingData)
                         } else {
                             Text("No product found for the serial number")
                         }
+
                     }
                 }
                 Spacer() // Pushes the content to the top
             })
         }
+    }
+    // Implement the == operator for Hashable conformance
+    static func ==(lhs: NewShipmentsView, rhs: NewShipmentsView) -> Bool {
+        // You can compare based on a unique property
+        return true // For this simple case, all instances are considered equal
     }
 }
 

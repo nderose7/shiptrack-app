@@ -14,16 +14,6 @@ struct ProductResponse: Decodable {
 
 struct ProductData: Decodable, Identifiable {
     var id: Int
-    var attributes: Product
-
-    // Explicitly define the type of `id` for `Identifiable`
-    typealias ID = Int
-    var identity: Int {
-        return id
-    }
-}
-
-struct Product: Decodable {
     var name: String
     var description: String
     var serial: String
@@ -31,7 +21,12 @@ struct Product: Decodable {
     var width: Int
     var height: Int
     var weight: Int
-    // Add other fields as per your Strapi Product model
+    // Add other fields that were previously in Product
+
+    typealias ID = Int
+    var identity: Int {
+        return id
+    }
 }
 
 
@@ -41,8 +36,28 @@ class ProductService {
             completion(nil, NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Authentication data not found"]))
             return
         }
+        
+        let endpoint = "/api/products"
 
-        let url = URL(string: "https://cloudship-strapi-6orma.ondigitalocean.app/api/products")!
+        var baseDomain: String {
+            #if DEBUG
+            return Bundle.main.object(forInfoDictionaryKey: "LocalBaseDomain") as? String ?? "http://localhost:1337"
+            #else
+            return Bundle.main.object(forInfoDictionaryKey: "ProductionBaseDomain") as? String ?? "https://cloudship-strapi-6orma.ondigitalocean.app"
+            #endif
+        }
+        
+        print("URL: ", baseDomain + endpoint)
+        
+        // Combine the base URL with the endpoint to form the complete URL.
+        guard let url = URL(string: baseDomain + endpoint), !baseDomain.isEmpty else {
+            // Handle the error appropriately
+            // e.g., log an error, show an alert, etc.
+            return
+        }
+        
+        
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("Bearer \(authData.token)", forHTTPHeaderField: "Authorization")
@@ -72,6 +87,7 @@ class ProductService {
             print("Raw Response: \(rawResponseString)")
 
             do {
+                // Directly decode into ProductResponse and pass the data array
                 let productResponse = try JSONDecoder().decode(ProductResponse.self, from: data)
                 completion(productResponse.data, nil)
             } catch {
@@ -83,13 +99,8 @@ class ProductService {
         task.resume()
     }
 
-    private func parseProducts(from data: Data) throws -> [Product] {
-        let decodedResponse = try JSONDecoder().decode(ProductResponse.self, from: data)
-        return decodedResponse.data.map { $0.attributes }
-    }
+    
 }
-
-
 
 struct AllProductsView: View {
     @State private var productData: [ProductData] = []  // Changed to ProductData
@@ -100,8 +111,8 @@ struct AllProductsView: View {
         NavigationView {
             List(productData, id: \.identity) { data in
                 VStack(alignment: .leading) {
-                    Text(data.attributes.name).font(.headline)
-                    Text(data.attributes.serial)
+                    Text(data.name).font(.headline)
+                    Text(data.serial)
                     //Text(data.attributes.description).font(.subheadline)
                 }
             }
@@ -115,13 +126,13 @@ struct AllProductsView: View {
 
     private func loadProducts() {
         isLoading = true
-        ProductService().fetchProducts { fetchedProductData, error in  // Changed to fetchedProductData
+        ProductService().fetchProducts { fetchedProductData, error in
             DispatchQueue.main.async {
                 isLoading = false
                 if let error = error {
                     self.errorMessage = error.localizedDescription
                 } else if let fetchedProductData = fetchedProductData {
-                    self.productData = fetchedProductData  // Changed to productData
+                    self.productData = fetchedProductData
                 }
             }
         }

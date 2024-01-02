@@ -200,7 +200,7 @@ struct ShippingRate: Decodable, Identifiable {
 
 
 struct ShipView: View {
-    var product: Product
+    var product: ProductData
     //var serialNumber: String
     @ObservedObject var shippingData: ShippingData
     private let originAddress = AddressFormFrom()
