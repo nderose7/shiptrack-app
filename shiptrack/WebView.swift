@@ -11,10 +11,12 @@ import WebKit
 struct WebView: UIViewRepresentable {
     let urlString: String
     var onOpenScanner: (() -> Void)?
+    var webViewManager: WebViewManager
 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
+        context.coordinator.webView = webView  // Store reference to webView
         return webView
     }
 
@@ -26,7 +28,9 @@ struct WebView: UIViewRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        let coordinator = Coordinator(self)
+        webViewManager.coordinator = coordinator // Assign coordinator to webViewManager
+        return coordinator
     }
 
     mutating func onOpenScanner(_ action: @escaping () -> Void) -> WebView {
@@ -36,6 +40,7 @@ struct WebView: UIViewRepresentable {
 
     class Coordinator: NSObject, WKNavigationDelegate {
         var parent: WebView
+        var webView: WKWebView?  // Reference to the WKWebView
 
         init(_ parent: WebView) {
             self.parent = parent
@@ -43,11 +48,24 @@ struct WebView: UIViewRepresentable {
 
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             if let url = navigationAction.request.url, url.scheme == "scanner" {
+                // This is your custom URL scheme handling
                 parent.onOpenScanner?() // Safe call using optional chaining
                 decisionHandler(.cancel)
             } else {
                 decisionHandler(.allow)
             }
+        }
+
+        // Add this method to evaluate JavaScript
+        func evaluateJavaScript(_ script: String) {
+            print("Evaluating JS: \(script)")
+            webView?.evaluateJavaScript(script, completionHandler: { result, error in
+                if let error = error {
+                    print("JavaScript evaluation error: \(error)")
+                } else if let result = result {
+                    print("JavaScript evaluation result: \(result)")
+                }
+            })
         }
     }
 }

@@ -10,4 +10,5 @@
 
 
 LocalBaseDomain = localhost:3000
-ProductionBaseDomain = cloudship-strapi-6orma.ondigitalocean.app
+//ProductionBaseDomain = cloudship-strapi-6orma.ondigitalocean.app
+ProductionBaseDomain = cloudship-xi.vercel.app

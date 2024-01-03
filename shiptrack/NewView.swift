@@ -105,6 +105,11 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         videoDataOutput.setSampleBufferDelegate(self, queue: videoDataOutputQueue)
         if captureSession.canAddOutput(videoDataOutput) {
             captureSession.addOutput(videoDataOutput)
+            
+            // Set the orientation of the video output to portrait
+            if let connection = videoDataOutput.connection(with: .video), connection.isVideoOrientationSupported {
+                connection.videoOrientation = .portrait
+            }
         }
         
         captureSession.commitConfiguration()
@@ -113,6 +118,11 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        
+        if connection.isVideoOrientationSupported {
+            connection.videoOrientation = .portrait
+        }
+        
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         
         let textRequest = VNRecognizeTextRequest { [weak self] request, error in
@@ -184,6 +194,8 @@ struct Product: Decodable {
 }
 
 
+
+
 struct NewShipmentsView: View, Hashable {
     @State private var scannedSerialNumber: String = ""
     @State private var scannedImage: UIImage?
@@ -192,108 +204,113 @@ struct NewShipmentsView: View, Hashable {
     @State private var isFetchingProduct = false
     @StateObject private var shippingData = ShippingData()
     @State private var cameraViewController: CameraViewController?
-    //@EnvironmentObject var navigationState: NavigationState
-    //@Binding var showNewView: Bool
-    //let onClose: () -> Void
-    //@Environment(\.presentationMode) var presentationMode
-    //@Binding var isPresented: Bool
     @Binding var showScanner: Bool
+    @EnvironmentObject var webViewManager: WebViewManager
     
     func hash(into hasher: inout Hasher) {
         // You can use a constant or a unique property to hash
         hasher.combine("NewShipmentsView")
     }
+    
+    func passDataToWebView() {
+        if let productId = foundProduct?.id {
+            print("Product id found...", productId)
+            let script = "receiveDataFromNative(\(productId))"
+            webViewManager.coordinator?.evaluateJavaScript(script)
+        } else {
+            print("Product data is not available")
+        }
+    }
 
     var body: some View {
         NavigationStack {
-            PageContainer(alignment: .center, title: "Scan Serial / Barcode", subtitle: "", content:  {
-                CameraView(cameraViewController: $cameraViewController) { serialNumber, image in
-                    self.scannedSerialNumber = serialNumber
-                    self.scannedImage = image
-                    self.isFetchingProduct = true
-                    ProductService().fetchProduct(bySerialNumber: serialNumber) { productData in
-                        self.foundProduct = productData
-                        self.isFetchingProduct = false
-                        if productData != nil {
-                            self.cameraViewController?.stopCamera() // Stop the camera here
+            VStack(spacing: 0) {
+                PageContainer(alignment: .center, title: "Scan Serial Number", subtitle: "", content:  {
+                    CameraView(cameraViewController: $cameraViewController) { serialNumber, image in
+                        self.scannedSerialNumber = serialNumber
+                        self.scannedImage = image
+                        self.isFetchingProduct = true
+                        ProductService().fetchProduct(bySerialNumber: serialNumber) { productData in
+                            self.foundProduct = productData
+                            self.isFetchingProduct = false
+                            if productData != nil {
+                                self.cameraViewController?.stopCamera() // Stop the camera here
+                            }
                         }
                     }
-
-                }
-                
-                if let image = scannedImage {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 200)
-                }
-                
-                if !scannedSerialNumber.isEmpty {
-                    VStack {
-                        Text("Scanned Serial Number:")
-                            .multilineTextAlignment(.center)
-                            .font(.custom("Avenir", size: 18))
-                            .fontWeight(.bold)
-                        
-                        Spacer().frame(height: 8)
-                        
-                        Text(scannedSerialNumber)
-                            .multilineTextAlignment(.center)
-                            .font(.custom("Avenir", size: 20))
-                        
-                        Spacer().frame(height: 20)
-                        
-                        if isFetchingProduct {
-                            Text("Searching for product...")
-                        } else if let productData = foundProduct {
-                            // Display product details
-                            Text("Product Found:")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity) 
+                    
+                    if let image = scannedImage {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 300)
+                    }
+                    
+                    if !scannedSerialNumber.isEmpty {
+                        VStack {
+                            Text("Scanned Serial Number:")
                                 .multilineTextAlignment(.center)
                                 .font(.custom("Avenir", size: 18))
                                 .fontWeight(.bold)
                             
                             Spacer().frame(height: 8)
                             
-                            Text(productData.name)
+                            Text(scannedSerialNumber)
                                 .multilineTextAlignment(.center)
-                                .font(.custom("Avenir", size: 18))
+                                .font(.custom("Avenir", size: 20))
                             
-                            Button("Done") {
-                                // Close sheet
-                                print("Trying to close...")
-                                //onClose()
-                                //self.presentationMode.wrappedValue.dismiss()
-                                //navigationState.showNewView = false
-                                //showNewView = false
-                                //print("Trying to close...", navigationState.showNewView)
-                                //self.isPresented = false
-                                self.showScanner = false
+                            Spacer().frame(height: 20)
+                            
+                            if isFetchingProduct {
+                                Text("Searching for product...")
+                            } else if let productData = foundProduct {
+                                // Display product details
+                                Text("Product Found:")
+                                    .multilineTextAlignment(.center)
+                                    .font(.custom("Avenir", size: 18))
+                                    .fontWeight(.bold)
+                                
+                                Spacer().frame(height: 8)
+                                
+                                Text(productData.name)
+                                    .multilineTextAlignment(.center)
+                                    .font(.custom("Avenir", size: 18))
+                                
+                                
+                                Button("Done") {
+                                    // Close sheet and pass data to web view
+                                    print("Trying to close...")
+                                    passDataToWebView()
+                                    self.showScanner = false
+                                }
+                                .padding(.leading, 40)
+                                .padding(.trailing, 40)
+                                .padding(.bottom, 20)
+                                .padding(.top, 20)
+                                .background(Color.hex("0177CC"))
+                                .foregroundColor(.white)
+                                .font(.custom("Avenir", size: 20))
+                                .fontWeight(.bold)
+                                .cornerRadius(100) // Change this value for different corner radius sizes
+                                .padding()
+                                
                             }
-                            .padding(.leading, 40)
-                            .padding(.trailing, 40)
-                            .padding(.bottom, 20)
-                            .padding(.top, 20)
-                            .background(Color.hex("0177CC"))
-                            .foregroundColor(.white)
-                            .font(.custom("Avenir", size: 20))
-                            .fontWeight(.bold)
-                            .cornerRadius(100) // Change this value for different corner radius sizes
-                            .padding()
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .navigationDestination(isPresented: $navigateToShipView) {
+                            if let productData = foundProduct {
+                                ShipView(product: productData, shippingData: shippingData)
+                            } else {
+                                Text("No product found for the serial number")
+                            }
                             
                         }
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .navigationDestination(isPresented: $navigateToShipView) {
-                        if let productData = foundProduct {
-                            ShipView(product: productData, shippingData: shippingData)
-                        } else {
-                            Text("No product found for the serial number")
-                        }
-
-                    }
-                }
-                Spacer() // Pushes the content to the top
-            })
+                    Spacer() // Pushes the content to the top
+                })
+            }
+            .padding(0)
         }
     }
     // Implement the == operator for Hashable conformance
